@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Portfolio - Nguyễn Anh Dũng </title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Bảng màu hoàn toàn mới: Dark Teal & Antique Gold */
+            --teal-dark: #004d4d;
+            --teal-light: #008080;
+            --gold-light: #f4e8b3;
+            --gold-dark: #bfa571;
+            --text-dark: #121212;
+            --text-gold: #f4e8b3;
+            --bg-body: #fcfcfc;
+            --bg-nav: #ffffff;
+            --bg-card: #f9f9f9;
+            --shadow-subtle: 0 4px 12px rgba(0,0,0,0.03);
+            --shadow-bold: 0 8px 30px rgba(0,0,0,0.08);
+            --font-headings: 'Crimson Pro', serif; /* Font chữ tiêu đề kiểu cổ điển */
+            --font-body: 'Space Grotesk', sans-serif; /* Font chữ nội dung kiểu hiện đại hình học */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Thanh điều hướng */
+        nav {
+            background-color: var(--bg-nav);
+            border-bottom: 1px solid rgba(0, 77, 77, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .nav-logo {
+            font-family: var(--font-headings);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--teal-dark);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--teal-light);
+        }
+
+        /* Banner chính */
+        .hero-banner {
+            background-color: var(--teal-dark);
+            color: var(--text-gold);
+            padding: 8rem 2rem 5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-banner::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
+        }
+
+        .hero-banner h1 {
+            font-family: var(--font-headings);
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .hero-banner p {
+            font-size: 1.2rem;
+            opacity: 0.85;
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 400;
+        }
+
+        /* Container Nội dung */
+        .portfolio-container {
+            max-width: 900px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-family: var(--font-headings);
+            font-size: 2.2rem;
+            color: var(--teal-dark);
+            margin-bottom: 2.5rem;
+            border-bottom: 2px solid rgba(191, 165, 113, 0.3);
+            padding-bottom: 0.5rem;
+        }
+
+        /* Thẻ Bài Tập / Section */
+        .assignment-card {
+            background-color: var(--bg-card);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 3.5rem;
+            box-shadow: var(--shadow-subtle);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .assignment-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-bold);
+        }
+
+        .card-num {
+            position: absolute;
+            top: -1.5rem;
+            left: 2.5rem;
+            background-color: var(--gold-dark);
+            color: var(--teal-dark);
+            font-weight: 700;
+            padding: 0.2rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 8px rgba(191, 165, 113, 0.4);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .card-header h3 {
+            font-family: var(--font-headings);
+            font-size: 1.75rem;
+            color: var(--teal-dark);
+            font-weight: 700;
+        }
+
+        .tag {
+            background-color: rgba(0, 77, 77, 0.06);
+            color: var(--teal-dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card-body p {
+            color: rgba(0, 0, 0, 0.75);
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+        }
+
+        /* Danh sách có Style */
+        .styled-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .styled-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: rgba(0, 0, 0, 0.8);
+            font-size: 0.95rem;
+        }
+
+        .styled-list li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: var(--gold-dark);
+            font-size: 0.9rem;
+        }
+
+        /* Container chứa link tài liệu */
+        .doc-link-container {
+            margin-top: 1.8rem;
+            border-top: 1px dashed rgba(0, 0, 0, 0.1);
+            padding-top: 1.2rem;
+        }
+
+        .btn-doc {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--teal-dark);
+            color: var(--text-gold);
+            text-decoration: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-doc:hover {
+            background-color: var(--teal-light);
+        }
+
+        /* Section Phản hồi / Tổng kết */
+        .reflection-section {
+            background-color: var(--teal-dark);
+            color: var(--text-gold);
+            border: none;
+        }
+
+        .reflection-section .card-header h3 {
+            color: var(--text-gold);
+        }
+
+        .reflection-section .card-body p {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .reflection-section .styled-list li {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .reflection-section .styled-list li::before {
+            color: var(--gold-light);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111111;
+            color: rgba(255, 255, 255, 0.5);
+            text-align: center;
+            padding: 3rem 2rem;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-banner h1 {
+                font-size: 2.5rem;
+            }
+            .assignment-card {
+                padding: 1.8rem;
+            }
+            .card-header h3 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="nav-logo">NAD.Portfolio</a>
+        <ul class="nav-links">
+            <li><a href="#about">Giới Thiệu</a></li>
+            <li><a href="#portfolio">Dự Án</a></li>
+            <li><a href="#reflection">Tổng Kết</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero-banner">
+        <h1>Nhập Môn Công Nghệ Số & AI</h1>
+        <p>Hồ sơ năng lực cá nhân lưu trữ các sản phẩm thực hành và phản tư kiến thức môn học.</p>
+    </header>
+
+    <main class="portfolio-container">
+        
+        <section id="about" class="assignment-card" style="border-top: 6px solid var(--teal-dark); margin-bottom: 5rem;">
+            <div class="card-header">
+                <h3>1. Trang Giới Thiệu</h3>
+            </div>
+            <div class="card-body">
+                <p><strong>Họ và tên:</strong> Nguyễn Anh Dũng<br>
+                <strong>Ngành học:</strong> Công nghệ Thông tin - Trường Đại học Công nghệ (UET)<br>
+                <strong>Sở thích:</strong> Nghiên cứu kiến trúc máy tính, tối ưu hóa phần cứng hệ thống và ứng dụng Trí tuệ nhân tạo (AI).</p>
+                
+                <p><strong>Mục tiêu học tập & Định hướng phát triển:</strong> Chủ động làm chủ các công cụ công nghệ số hiện đại, rèn luyện tư duy lập trình chuyên sâu và phát triển kỹ năng cộng tác từ xa, hướng tới mục tiêu trở thành một Kỹ sư Hệ thống/Phần mềm xuất sắc trong tương lai.</p>
+                
+                <p><strong>Mục tiêu của Portfolio này:</strong> "Thể hiện các kỹ năng số đã học" qua chuỗi bài tập thực hành, đồng thời "Lưu trữ sản phẩm cá nhân để dễ dàng truy cập và chia sẻ" minh chứng năng lực học tập của bản thân đến thầy cô và bạn bè.</p>
+            </div>
+        </section>
+
+        <h2 id="portfolio" class="section-title">2. Trang Dự Án</h2>
+
+        <section class="assignment-card">
+            <div class="card-num">Bài 1</div>
+            <div class="card-header">
+                <h3>Tìm hiểu Hệ điều hành & Quản lý tệp tin</h3>
+                <span class="tag">Hệ điều hành</span>
+            </div>
+            <div class="card-body">
+                <p>Thực hành thao tác cốt lõi trên các môi trường hệ điều hành phổ biến, thiết lập tư duy quản lý dữ liệu một cách tối ưu và bảo mật.</p>
+                <ul class="styled-list">
+                    <li>Mở terminal, kiểm tra cấu hình hệ thống tệp và phân quyền tài nguyên.</li>
+                    <li>Tạo cấu trúc cây thư mục phân cấp phục vụ học tập và nghiên cứu cá nhân.</li>
+                    <li>Thực hiện các lệnh quản lý tệp căn bản: khởi tạo, sao chép, di chuyển và xóa an toàn.</li>
+                </ul>
+                <div class="doc-link-container">
+                    <a href="https://docs.google.com/document/d/1B0-bN8-6k_hE7G4R5_N0D_N8_k_N_8_k_/edit" class="btn-doc">Xem Sản Phẩm</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="assignment-card">
+            <div class="card-num">Bài 2</div>
+            <div class="card-header">
+                <h3>Tìm kiếm & Đánh giá Tài liệu học thuật</h3>
+                <span class="tag">Nghiên cứu</span>
+            </div>
+            <div class="card-body">
+                <p>Khai thác thông tin chuyên sâu phục vụ nghiên cứu chủ đề: "Kiến trúc phần cứng tối ưu cho Edge AI".</p>
+                <ul class="styled-list">
+                    <li>Sử dụng các toán tử nâng cao (AND, OR, site:, filetype:) trên Google Scholar và IEEE Xplore.</li>
+                    <li>Xây dựng bộ lọc tài liệu dựa trên chỉ số trích dẫn và uy tín của hội nghị xuất bản.</li>
+                    <li>Đánh giá độ tin cậy của dữ liệu thứ cấp và trích dẫn nguồn theo chuẩn APA tự động.</li>
+                </ul>
+                <div class="doc-link-container">
+                    <a href="https://docs.google.com/document/d/1N_hE7_k_R5_N0D_N8_k_N_8_k_/edit" class="btn-doc">Xem Sản Phẩm</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="assignment-card">
+            <div class="card-num">Bài 3</div>
+            <div class="card-header">
+                <h3>Kỹ nghệ Prompt (Prompt Engineering)</h3>
+                <span class="tag">Trí tuệ nhân tạo</span>
+            </div>
+            <div class="card-body">
+                <p>Ứng dụng kỹ thuật cấu trúc câu lệnh chuyên nghiệp để khai thác tối đa năng lực giải quyết vấn đề của các mô hình LLMs.</p>
+                <ul class="styled-list">
+                    <li>Áp dụng kỹ thuật Few-shot Prompting để định hình định dạng đầu ra cho dữ liệu thô phức tạp.</li>
+                    <li>Sử dụng Chain-of-Thought (Chuỗi tư duy) yêu cầu AI giải thích tường tận các bước tối ưu mã nguồn.</li>
+                    <li>Thiết lập khung cấu trúc vai trò (Role-play) biến AI thành một chuyên gia review bảo mật hệ thống.</li>
+                </ul>
+                <div class="doc-link-container">
+                    <a href="https://docs.google.com/document/d/1B_8_k_N_8_k_/edit" class="btn-doc">Xem Sản Phẩm</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="assignment-card">
+            <div class="card-num">Bài 4</div>
+            <div class="card-header">
+                <h3>Hợp tác trực tuyến & Quản trị dữ liệu đám mây</h3>
+                <span class="tag">Cộng tác số</span>
+            </div>
+            <div class="card-body">
+                <p>Phối hợp làm việc nhóm thời gian thực để xử lý thông tin, phân tích tiến độ dự án thông qua bảng tính trực tuyến nâng cao.</p>
+                <ul class="styled-list">
+                    <li>Thiết lập các hàm logic và bộ lọc dữ liệu tự động để phân loại tác vụ công việc nhóm.</li>
+                    <li>Sử dụng tính năng phân quyền truy cập, ghi vết lịch sử chỉnh sửa ngăn chặn xung đột dữ liệu.</li>
+                    <li>Tích hợp biểu đồ trực quan hóa dữ liệu hiệu suất tiến độ công việc theo thời gian thực.</li>
+                </ul>
+                <div class="doc-link-container">
+                    <a href="https://docs.google.com/document/d/1N_k_N_8_k_R5_N0D_N8_k_N_8_k_/edit" class="btn-doc">Xem Sản Phẩm</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="assignment-card">
+            <div class="card-num">Bài 5</div>
+            <div class="card-header">
+                <h3>Ứng dụng AI sáng tạo Nội dung số</h3>
+                <span class="tag">Tạo sinh nội dung</span>
+            </div>
+            <div class="card-body">
+                <p>Phối hợp đa công cụ AI (văn bản, hình ảnh, slide) xây dựng chiến dịch truyền thông giới thiệu công nghệ mới.</p>
+                <ul class="styled-list">
+                    <li>Dùng mô hình ngôn ngữ lớn lập đề cương, lên kịch bản nội dung chi tiết theo từng phân khúc độc giả.</li>
+                    <li>Sử dụng AI tạo ảnh (Midjourney/DALL-E) thiết kế tài nguyên đồ họa đồng bộ với nhận diện thương hiệu.</li>
+                    <li>Dàn trang tự động bằng công cụ trình chiếu thông minh và tối ưu hóa trải nghiệm thị giác.</li>
+                </ul>
+                <div class="doc-link-container">
+                    <a href="https://docs.google.com/document/d/1B_hE7_k_R5_N0D_N8_k_N_8_k_/edit" class="btn-doc">Xem Sản Phẩm</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="assignment-card">
+            <div class="card-num">Bài 6</div>
+            <div class="card-header">
+                <h3>Đạo đức & Trách nhiệm sử dụng AI</h3>
+                <span class="tag">Liêm chính số</span>
+            </div>
+            <div class="card-body">
+                <p>Xây dựng tuyên ngôn cá nhân về nguyên tắc ứng xử học thuật, kiểm soát rủi ro thông tin khi làm việc với AI.</p>
+                <ul class="styled-list">
+                    <li>Phân tích các ca lâm sàng về vi phạm bản quyền và rò rỉ dữ liệu khi huấn luyện mô hình.</li>
+                    <li>Thiết lập quy trình 3 bước kiểm tra chéo thông tin (Fact-check) loại bỏ hiện tượng ảo giác của AI.</li>
+                    <li>Cam kết bộ quy tắc ứng xử liêm chính học thuật cá nhân đối với sản phẩm sử dụng công cụ tạo sinh.</li>
+                </ul>
+                <div class="doc-link-container">
+                    <a href="https://docs.google.com/document/d/1N_hE7G4_N0D_N8_k_N_8_k_N_8_k_/edit" class="btn-doc">Xem Sản Phẩm</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="reflection" class="assignment-card reflection-section">
+            <div class="card-header">
+                <h3>3. Trang Tổng Kết</h3>
+            </div>
+            <div class="card-body">
+                <p><strong>Trải nghiệm và cảm nhận cá nhân:</strong> Hành trình trải qua môn học "Nhập môn Công nghệ số và Ứng dụng AI" đã thực sự kiến tạo một bước ngoặt chuyển đổi số toàn diện, giúp tôi thay đổi sâu sắc cách thức tiếp cận và giải quyết vấn đề trong kỷ nguyên số.</p>
+                
+                <ul class="styled-list">
+                    <li><strong>Kiến thức và kỹ năng quan trọng nhất đã học được:</strong> Năng lực tự chủ cấu trúc dữ liệu và quản lý tệp tin khoa học; kỹ năng khai thác và đánh giá nguồn tài liệu học thuật đáng tin cậy; làm chủ kỹ nghệ Prompt thông minh cũng như vận dụng các công cụ AI tạo sinh một cách có kiểm soát.</li>
+                    
+                    <li><strong>Điểm tâm đắc nhất và Thách thức đã vượt qua:</strong> Điểm tâm đắc nhất là tôi đã tự tay xây dựng, thiết kế và cá nhân hóa thành công không gian Portfolio số này. Thách thức lớn nhất ban đầu là việc viết mã Prompt cho các báo cáo chuyên sâu còn lan man, nhưng tôi đã vượt qua bằng cách áp dụng kỹ thuật chuỗi tư duy (Chain-of-Thought) và duy trì vai trò kiểm định nghiêm ngặt (Gatekeeper) để tối ưu hiệu suất công việc lên đến 50%.</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Student Portfolio. Coded with passion for the Digital Technology Assignment.</p>
+        <p style=\"font-size: 0.8rem; opacity: 0.6; margin-top: 0.5rem;\">Hosting enabled...</p>
+    </footer>
+
+</body>
+</html>
